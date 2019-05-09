@@ -1,0 +1,26 @@
+body
+		{
+			margin: 0 4% 0 4%;
+		}
+		.main_service{
+			
+			width:auto;
+			margin:10px 0 0 0;
+				
+		}
+		.it_services
+		{
+			width:860px;
+			float:left;
+			border: 1px solid #E8E2E2;
+			padding:0 10px 0 10px;
+											
+		}
+		.study
+		{	
+			width:300px;
+			border: 1px solid #E8E2E2;
+			display:inline-block;
+			margin-left:20px;
+			padding:5px 0 0 10px;				
+		}

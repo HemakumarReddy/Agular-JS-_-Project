@@ -1,0 +1,63 @@
+body
+		{
+			margin: 0 4% 0 4%;
+		}
+		.training h1
+		{
+			text-align:center;
+		}
+		.cr1
+		{
+			display:inline-block;
+			border: 1px solid #E8E2E2;
+			padding:10px;
+			margin-bottom:5px;
+			width:280px;
+		}
+		.cr1 h3
+		{
+			text-align:center;
+			font-family: Segoe;
+		}
+		input[type="button"]
+		{
+			float: right;
+		}
+		.cf
+		{
+			clear:both
+		}
+		.main_service{
+			
+			width:auto;
+			margin:10px 0 0 0;
+				
+		}
+		.it_services
+		{
+			width:860px;
+			float:left;
+											
+		}
+		.study
+		{	
+			width:300px;
+			border: 1px solid #E8E2E2;
+			display:inline-block;
+			margin-left:20px;
+			padding:5px 0 0 10px;				
+		}
+		.e_services
+		{
+			width:100%;
+			background:#F4E9DA;
+		}
+		.e_services h2
+		{
+			text-align:center;
+		}
+		.e_services img
+		{
+			margin:0 0 0 45px;
+			padding:20px;
+		}

@@ -1,0 +1,204 @@
+		<!--<link href="css/services.css" type="text/stylesheet">-->
+		<style>
+			body
+			{
+				margin: 0 4% 0 4%;				
+			}
+			#entry
+			{
+				margin:10px 0 0 0;
+			}
+			.reg_ser
+			{
+				float:left;
+				border:1px solid #E8E2E2;
+				padding:5px;
+			}
+			.reg_fom
+			{
+				margin: 0 0 0 20px;
+				
+			}
+			.elegant-aero 
+			{
+				margin-left:auto;
+				margin-right:auto;
+				margin-top:5px;
+				margin-bottom:10px;
+				width:640px;
+				border:1px solid #E8E2E2;
+				padding: 20px 20px 20px 20px;
+				font: 12px Arial, Helvetica, sans-serif;
+				color: #666;
+				
+				<!--max-width: 600px;-->
+				<!--background: #D2E9FF;-->
+			}
+
+			.elegant-aero label 
+			{
+				display: block;
+				margin: 0px 0px 5px;
+			}
+
+			.elegant-aero input[type="text"], .elegant-aero input[type="email"], .elegant-aero textarea 
+			{
+				color: #888;
+				width: 60%;
+				padding: 0px 0px 0px 5px;				
+				outline: 0;
+				font: 200 12px/25px Arial, Helvetica, sans-serif;
+				height: 30px;
+				line-height:15px;
+				margin: 2px 6px 16px 0px;
+				<!--border: 1px solid #C5E2FF;-->
+				<!--background: #FBFBFB;-->
+				<!---webkit-box-shadow:inset 0px 1px 6px #ECF3F5;-->
+				<!---box-shadow: inset 0px 1px 6px #ECF3F5;-->
+				
+			}
+
+			.elegant-aero textarea
+			{
+				height:100px;
+				padding: 5px 0px 0px 5px;
+				width: 60%;
+			}
+
+			div
+			{
+				display:inline-block;
+				vertical-align:top;				
+			}
+			
+			table
+			{
+				border-collapse:collapse;
+				font-family:Arial;
+				margin: 0 4px 0 4px;
+				width:auto;
+			}
+			td
+			{
+				border:1px solid black;
+				padding:5px;
+				
+			}
+			th
+			{
+				border:1px solid black;
+				text-align:center;
+				padding:10px;
+				
+				
+			}
+		</style>
+	</head>
+<body >
+	<div id="entry">
+		<div class="reg_ser">
+			<img src="images/129_P940.jpg" width="314px" height="420px" alt="reg_img">
+		</div>
+		<div class="reg_fom" ng-controller="myRegform" >
+			<form name="exampleForm" class="elegant-aero" novalidate>
+			<!--2/11/17-->
+				<div ng-show="userid">
+					<label>ID:</label>
+					<input type="text" name="userid" ng-model="user.id" required />
+				</div>
+				<!--2/11/17-->
+				<label>First Name:</label>
+				<input type="text" name="userFirstName" ng-model="user.firstName" required />
+				<div ng-messages="exampleForm.userFirstName.$error">
+				  <div ng-message="required">This field is required</div>
+				</div>
+
+				<label>Last Name:</label>
+				<input type="text" name="userLastName" ng-model="user.lastName" required />
+				<div ng-messages="exampleForm.userLastName.$error">
+				  <!--<div ng-message="required">This field is required</div>-->
+				</div>
+
+				<label>Email Address:</label>
+				<input type="email" name="userEmail" ng-model="user.email" required />
+				<div ng-messages="exampleForm.userEmail.$error">
+				  <!--<div ng-message="required">This field is required</div>-->
+				  <div ng-message="email">Your email address is invalid</div>
+				</div>
+
+				<!--<label>Phone Number:</label>
+				<input type="email" name="userPhoneNumber" ng-model="user.phoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required/>
+				<div ng-messages="exampleForm.userPhoneNumber.$error">
+				  <!--<div ng-message="required">This field is required</div>
+				  <div ng-message="pattern">Must be a valid 10 digit phone number</div>
+				</div>-->
+
+				<label>Address:</label>
+				<textarea type="text" name="userMessage" class="form-control" rows="4" ng-model="user.address" ng-minlength="10" ng-maxlength="100" required></textarea>
+				<div ng-messages="exampleForm.userMessage.$error">
+				  <!--<div ng-message="required">This field is required</div>-->
+				  <div ng-message="minlength">Message must be over 10 characters</div>
+				  <div ng-message="maxlength">Message must not exceed 100 characters</div>
+				</div><br>
+				<div ng-show = "IsVisible">
+					<button type="submit" ng-click="Reg(user)" id="reg1">SUBMIT</button>					
+				</div>
+				
+				
+				<div ng-show = "IsVisible1">
+					<button ng-click="Update(user)">Update</button>
+					<button ng-click="reset(user)">Cancel</button>
+				</div>
+				
+				<!--<div>{{val}}</div>--> <!-- comment 29/10/17-->
+			</form>
+			<!--29/10/17-->
+			<div>
+			<label>Search: <input ng-model="searchText"></label>
+				<table >
+					<thead>
+						<tr>
+							<th> ID </th>	<!--2/11/17-->
+							<th> FIRST NAME </th>
+							<th> LAST Name </th>
+							<th> Email </th>
+							<th> ADDRESS </th>
+							<th> ACTION </th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="recards in val  | filter:searchText track by $index">
+							<td>{{recards.id}}</td>
+							<td>{{recards.firstName | uppercase}}</td>
+							<td>{{recards.lastName | uppercase}}</td>
+							<td>{{recards.email | lowercase}}</td>
+							<td>{{recards.address | uppercase}}</td>
+							<td>
+								<button ng-click="editContact(recards)">Edit</button>
+								<button ng-click="removeRow($index)">Remove</button>
+							</td>							
+						</tr>
+					</tbody>
+				</table>
+			<!--{{arrayData}}-->			
+			</div>
+				
+			
+			<!--<script type="text/ng-template" id="edit">
+				<td><input type="text" ng-model="user.firstName" /></td>
+				<td><input type="text" ng-model="user.lastName" /></td>
+				<td><input type="text" ng-model="user.email" /></td>
+				<td><input type="text" ng-model="user.address" /></td>
+				<td>
+					<button ng-click="saveContact($index)">Save</button>
+					<button ng-click="reset()">Cancel</button>
+				</td>
+			</script>-->
+			
+		</div>
+		
+		
+	  <br><br>
+	</div>
+</body>
+</html>

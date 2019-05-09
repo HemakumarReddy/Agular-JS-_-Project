@@ -1,0 +1,19 @@
+.Container
+{
+     width:250px;
+	 height:400px;
+	 float:left;
+	 margin:2px;
+	 margin-bottom:2px;
+   text-align:center;
+   
+   }
+   table
+   {
+       border-collapse:collapse;
+       height:150px;   
+       width:50px;
+      float :right;
+	  
+   }
+   
